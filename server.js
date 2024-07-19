@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 
 
 const app = express();
-const port = 8080
+const port = 3030
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -17,9 +17,13 @@ app.listen(port, () => {
 })
 
 
-const uri = 'mongodb+srv://duonghgvt:duonghg04@cluster0.5s1crlw.mongodb.net/MD18402';
+const uri = 'mongodb+srv://duonghgvt:duonghg04@cluster0.5s1crlw.mongodb.net/MD18402_ASM';
 
 const foodModel = require('./foodModel')
+
+const apiMobile = require('./api')
+
+app.use('/api', apiMobile);
 
 app.get('/', async (req, res) => {
     await mongoose.connect(uri);
